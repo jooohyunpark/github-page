@@ -6,6 +6,7 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  // https://vitejs.dev/config/shared-options.html#base
   base: "https://jooohyunpark.github.io/test/",
   build: {
     outDir: "../docs",
