@@ -6,6 +6,7 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  base: "https://jooohyunpark.github.io/test/",
   build: {
     outDir: "../docs",
     rollupOptions: {
