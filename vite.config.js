@@ -7,7 +7,7 @@ export default defineConfig({
     port: 3000,
   },
   // https://vitejs.dev/config/shared-options.html#base
-  base: "https://jooohyunpark.github.io/test/",
+  base: "https://jooohyunpark.github.io/github-page/",
   build: {
     outDir: "../docs",
     rollupOptions: {
