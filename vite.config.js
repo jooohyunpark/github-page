@@ -10,11 +10,6 @@ export default defineConfig({
   base: "/github-page/",
   build: {
     outDir: "../docs",
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, "src/index.html"),
-      },
-    },
   },
   publicDir: resolve(__dirname, "public"),
 });
