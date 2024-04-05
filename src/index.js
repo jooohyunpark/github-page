@@ -65,7 +65,7 @@ window.addEventListener("resize", onResize);
 */
 
 const imageTexture = new THREE.TextureLoader().load(
-  "./hubble_telescope_picture.jpg"
+  "/hubble_telescope_picture.jpg"
 );
 imageTexture.colorSpace = THREE.SRGBColorSpace;
 
@@ -73,6 +73,7 @@ imageTexture.colorSpace = THREE.SRGBColorSpace;
 const sphereGeometry = new THREE.SphereGeometry(2, 128, 128);
 const sphereMaterial = new THREE.MeshStandardMaterial({
   // color: "black",
+  color: "white",
   roughness: 0.8,
   metalness: 0.2,
   map: imageTexture,
