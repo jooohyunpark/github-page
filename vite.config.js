@@ -9,7 +9,7 @@ export default defineConfig({
   // https://vitejs.dev/config/shared-options.html#base
   base: "/github-page/",
   build: {
-    outDir: "../docs",
+    outDir: resolve(__dirname, "docs"),
   },
   publicDir: resolve(__dirname, "public"),
 });
