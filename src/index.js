@@ -65,7 +65,7 @@ window.addEventListener("resize", onResize);
 */
 
 const imageTexture = new THREE.TextureLoader().load(
-  "/hubble_telescope_picture.jpg"
+  "./hubble_telescope_picture.jpg"
 );
 imageTexture.colorSpace = THREE.SRGBColorSpace;
 
