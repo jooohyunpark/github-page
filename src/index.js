@@ -64,12 +64,21 @@ window.addEventListener("resize", onResize);
 //////////////////////////////////////////////////////////////////////////////
 */
 
+const imageTexture = new THREE.TextureLoader().load(
+  "./hubble_telescope_picture.jpg"
+);
+imageTexture.colorSpace = THREE.SRGBColorSpace;
+
+console.log(imageTexture);
+
 // spheres
 const sphereGeometry = new THREE.SphereGeometry(2, 128, 128);
 const sphereMaterial = new THREE.MeshStandardMaterial({
-  color: "black",
+  // color: "black",
+  color: "white",
   roughness: 0.8,
   metalness: 0.2,
+  map: imageTexture,
 });
 
 for (let i = 0; i < 1000; i++) {
