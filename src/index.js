@@ -60,9 +60,9 @@ const onResize = () => {
 
 window.addEventListener("resize", onResize);
 
-/* 
-//////////////////////////////////////////////////////////////////////////////
-*/
+/**
+ * //////////////////////////////////////////////////////////////////////////////
+ */
 
 // spheres
 const sphereGeometry = new THREE.SphereGeometry(2, 128, 128);
@@ -78,6 +78,11 @@ for (let i = 0; i < 1000; i++) {
   const y = 100 - Math.random() * 200;
   const z = 100 - Math.random() * 200;
   sphereMesh.position.set(x, y, z);
+  sphereMesh.rotation.set(
+    Math.random() * Math.PI * 2,
+    Math.random() * Math.PI * 2,
+    Math.random() * Math.PI * 2
+  );
 
   // adding custome properties to use later
   sphereMesh.name = "sphere";
@@ -198,9 +203,9 @@ const onClick = () => {
 };
 window.addEventListener("click", onClick);
 
-/* 
-//////////////////////////////////////////////////////////////////////////////
-*/
+/**
+ * //////////////////////////////////////////////////////////////////////////////
+ */
 
 const button = document.querySelector("#bg-button");
 
@@ -218,3 +223,25 @@ const onButtonClick = () => {
   });
 };
 button.addEventListener("click", onButtonClick);
+
+/**
+ * handling asset path for nested folder path
+ */
+
+// define base path
+const basePath = "/github-page/";
+
+// load image texture
+const imageTexture = new THREE.TextureLoader().load(
+  basePath + "/hubble_telescope_picture.jpg"
+);
+imageTexture.colorSpace = THREE.SRGBColorSpace;
+
+// big sphere
+const bigSphereGeometry = new THREE.SphereGeometry(5, 128, 128);
+const bigSphereMaterial = new THREE.MeshStandardMaterial({
+  color: "white",
+  map: imageTexture,
+});
+const bigSphereMesh = new THREE.Mesh(bigSphereGeometry, bigSphereMaterial);
+scene.add(bigSphereMesh);
