@@ -3,6 +3,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls";
 import { gsap } from "gsap";
 import randomColor from "randomcolor"; // https://github.com/davidmerfield/randomColor
+import pkg from "../package.json";
 
 // app
 const app = document.querySelector("#app");
@@ -228,12 +229,9 @@ button.addEventListener("click", onButtonClick);
  * handling asset path for nested folder path
  */
 
-// define base path
-const BASE_PATH = "/github-page/";
-
 // load image texture
 const imageTexture = new THREE.TextureLoader().load(
-  BASE_PATH + "/hubble_telescope_picture.jpg"
+  pkg.base + "/hubble_telescope_picture.jpg"
 );
 imageTexture.colorSpace = THREE.SRGBColorSpace;
 
