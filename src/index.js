@@ -229,11 +229,11 @@ button.addEventListener("click", onButtonClick);
  */
 
 // define base path
-const basePath = "/github-page/";
+const BASE_PATH = "/github-page/";
 
 // load image texture
 const imageTexture = new THREE.TextureLoader().load(
-  basePath + "/hubble_telescope_picture.jpg"
+  BASE_PATH + "/hubble_telescope_picture.jpg"
 );
 imageTexture.colorSpace = THREE.SRGBColorSpace;
 
