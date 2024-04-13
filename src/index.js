@@ -3,7 +3,11 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls";
 import { gsap } from "gsap";
 import randomColor from "randomcolor"; // https://github.com/davidmerfield/randomColor
-import pkg from "../package.json";
+
+// import image as a resolved URL
+import imageTextureURL from "../public/hubble_telescope_picture.jpg";
+
+console.log(imageTextureURL);
 
 // app
 const app = document.querySelector("#app");
@@ -230,9 +234,7 @@ button.addEventListener("click", onButtonClick);
  */
 
 // load image texture
-const imageTexture = new THREE.TextureLoader().load(
-  pkg.base + "/hubble_telescope_picture.jpg"
-);
+const imageTexture = new THREE.TextureLoader().load(imageTextureURL);
 imageTexture.colorSpace = THREE.SRGBColorSpace;
 
 // big sphere
