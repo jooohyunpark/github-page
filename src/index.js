@@ -4,7 +4,7 @@ import { OrbitControls } from "three/addons/controls/OrbitControls";
 import { gsap } from "gsap";
 import randomColor from "randomcolor"; // https://github.com/davidmerfield/randomColor
 
-// or alternatively, you can import image as a resolved URL from assets folder
+// Alternatively, you can import image as a resolved URL from assets folder
 import imageTextureURL from "./assets/hubble_telescope_picture.jpg";
 
 console.log(imageTextureURL);
