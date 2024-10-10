@@ -65,9 +65,22 @@ const onResize = () => {
 
 window.addEventListener("resize", onResize);
 
-/**
- * //////////////////////////////////////////////////////////////////////////////
- */
+// Generating Random Points in a Sphere (https://karthikkaranth.me/blog/generating-random-points-in-a-sphere/)
+const getPoint = (radius = 1) => {
+  const u = Math.random();
+  const v = Math.random();
+  const theta = u * 2.0 * Math.PI;
+  const phi = Math.acos(2.0 * v - 1.0);
+  const r = Math.cbrt(Math.random()) * radius;
+  const sinTheta = Math.sin(theta);
+  const cosTheta = Math.cos(theta);
+  const sinPhi = Math.sin(phi);
+  const cosPhi = Math.cos(phi);
+  const x = r * sinPhi * cosTheta;
+  const y = r * sinPhi * sinTheta;
+  const z = r * cosPhi;
+  return { x, y, z };
+};
 
 // spheres
 const sphereGeometry = new THREE.SphereGeometry(2, 128, 128);
@@ -79,15 +92,8 @@ const sphereMaterial = new THREE.MeshStandardMaterial({
 
 for (let i = 0; i < 1000; i++) {
   const sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial.clone());
-  const x = 100 - Math.random() * 200;
-  const y = 100 - Math.random() * 200;
-  const z = 100 - Math.random() * 200;
+  const { x, y, z } = getPoint(100);
   sphereMesh.position.set(x, y, z);
-  sphereMesh.rotation.set(
-    Math.random() * Math.PI * 2,
-    Math.random() * Math.PI * 2,
-    Math.random() * Math.PI * 2
-  );
 
   // adding custome properties to use later
   sphereMesh.name = "sphere";
