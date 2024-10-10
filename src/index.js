@@ -4,6 +4,11 @@ import { OrbitControls } from "three/addons/controls/OrbitControls";
 import { gsap } from "gsap";
 import randomColor from "randomcolor"; // https://github.com/davidmerfield/randomColor
 
+// Alternatively, you can import image as a resolved URL from assets folder
+import imageTextureURL from "./assets/hubble_telescope_picture.jpg";
+
+console.log(imageTextureURL);
+
 // app
 const app = document.querySelector("#app");
 
@@ -26,7 +31,7 @@ const camera = new THREE.PerspectiveCamera(
 );
 camera.position.set(0, 0, 100);
 
-// axes helper -> X: red, Y: green, Z: blue
+// axis helper -> X: red, Y: green, Z: blue
 const axesHelper = new THREE.AxesHelper(5);
 axesHelper.position.y = 0.001;
 scene.add(axesHelper);
@@ -57,24 +62,12 @@ const onResize = () => {
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 };
+
 window.addEventListener("resize", onResize);
 
-// Generating Random Points in a Sphere (https://karthikkaranth.me/blog/generating-random-points-in-a-sphere/)
-const getPoint = (radius = 1) => {
-  const u = Math.random();
-  const v = Math.random();
-  const theta = u * 2.0 * Math.PI;
-  const phi = Math.acos(2.0 * v - 1.0);
-  const r = Math.cbrt(Math.random()) * radius;
-  const sinTheta = Math.sin(theta);
-  const cosTheta = Math.cos(theta);
-  const sinPhi = Math.sin(phi);
-  const cosPhi = Math.cos(phi);
-  const x = r * sinPhi * cosTheta;
-  const y = r * sinPhi * sinTheta;
-  const z = r * cosPhi;
-  return { x, y, z };
-};
+/**
+ * //////////////////////////////////////////////////////////////////////////////
+ */
 
 // spheres
 const sphereGeometry = new THREE.SphereGeometry(2, 128, 128);
@@ -86,8 +79,15 @@ const sphereMaterial = new THREE.MeshStandardMaterial({
 
 for (let i = 0; i < 1000; i++) {
   const sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial.clone());
-  const { x, y, z } = getPoint(100);
+  const x = 100 - Math.random() * 200;
+  const y = 100 - Math.random() * 200;
+  const z = 100 - Math.random() * 200;
   sphereMesh.position.set(x, y, z);
+  sphereMesh.rotation.set(
+    Math.random() * Math.PI * 2,
+    Math.random() * Math.PI * 2,
+    Math.random() * Math.PI * 2
+  );
 
   // adding custome properties to use later
   sphereMesh.name = "sphere";
@@ -113,6 +113,8 @@ let INTERSECTED;
 
 // animate
 const animate = () => {
+  requestAnimationFrame(animate);
+
   // update the picking ray with the camera and pointer position
   raycaster.setFromCamera(pointer, camera);
 
@@ -124,7 +126,7 @@ const animate = () => {
     if (
       // look for raycasted sphere
       intersects[0].object.name === "sphere" &&
-      intersects[0].object !== INTERSECTED
+      INTERSECTED !== intersects[0].object
     ) {
       // reset previous intersected object's color
       if (INTERSECTED)
@@ -151,11 +153,10 @@ const animate = () => {
   renderer.render(scene, camera);
   controls.update();
 };
-renderer.setAnimationLoop(animate);
+
+animate();
 
 const onClick = () => {
-  console.log(INTERSECTED);
-
   // if no intersected objects, return
   if (!INTERSECTED) return;
 
@@ -211,7 +212,7 @@ const onClick = () => {
 };
 window.addEventListener("click", onClick);
 
-const bgGutton = document.querySelector("#bg-button");
+const button = document.querySelector("#bg-button");
 
 const onButtonClick = () => {
   const c = randomColor({
@@ -226,4 +227,23 @@ const onButtonClick = () => {
     ease: "linear",
   });
 };
-bgGutton.addEventListener("click", onButtonClick);
+button.addEventListener("click", onButtonClick);
+
+/**
+ * handling asset path for nested folder path
+ */
+
+// load image texture
+const imageTexture = new THREE.TextureLoader().load(
+  "/github-page/hubble_telescope_picture.jpg"
+);
+imageTexture.colorSpace = THREE.SRGBColorSpace;
+
+// big sphere
+const bigSphereGeometry = new THREE.SphereGeometry(5, 128, 128);
+const bigSphereMaterial = new THREE.MeshStandardMaterial({
+  color: "white",
+  map: imageTexture,
+});
+const bigSphereMesh = new THREE.Mesh(bigSphereGeometry, bigSphereMaterial);
+scene.add(bigSphereMesh);
