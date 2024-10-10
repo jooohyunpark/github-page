@@ -4,7 +4,7 @@ import { OrbitControls } from "three/addons/controls/OrbitControls";
 import { gsap } from "gsap";
 import randomColor from "randomcolor"; // https://github.com/davidmerfield/randomColor
 
-// Alternatively, you can import image as a resolved URL from assets folder
+// You can import image as a resolved URL from assets folder
 import imageTextureURL from "./assets/hubble_telescope_picture.jpg";
 
 console.log(imageTextureURL);
@@ -239,7 +239,7 @@ button.addEventListener("click", onButtonClick);
  * handling asset path for nested folder path
  */
 
-// load image texture
+// load image texture from base path
 const imageTexture = new THREE.TextureLoader().load(
   "/github-page/hubble_telescope_picture.jpg"
 );
