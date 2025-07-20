@@ -12,6 +12,8 @@ export default defineConfig({
       "@": "/src",
     },
   },
+  // https://vitejs.dev/config/shared-options.html#base
+  base: "/github-page/",
   build: {
     outDir: "docs",
   },

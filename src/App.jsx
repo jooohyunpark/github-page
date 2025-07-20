@@ -77,7 +77,7 @@ function Scene() {
           />
         </directionalLight>
 
-        <Environment files="/images/studio.hdr" />
+        <Environment files="/github-page/images/studio.hdr" />
 
         <Physics debug={false}>
           {texts.map((text, index) => (

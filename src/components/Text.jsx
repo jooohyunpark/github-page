@@ -17,7 +17,7 @@ export function Text({
     <RigidBody position={position} rotation={rotation} colliders="cuboid">
       <animated.group>
         <Text3D
-          font="/fonts/helvetiker_regular.typeface.json"
+          font="/github-page/fonts/helvetiker_regular.typeface.json"
           size={1}
           height={0.2}
           curveSegments={12}
